@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-create-order',
@@ -7,9 +9,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateOrderComponent implements OnInit {
 
-  constructor() { }
+  orderForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private svc: OrderService) {
+  }
 
   ngOnInit() {
+    this.orderForm = this.fb.group({
+      code: ['', Validators.required],
+      amount: ['', Validators.required],
+      orderDate: ['', Validators.required]
+    });
+  }
+
+  submitOrder() {
+    const order = this.orderForm.value;
+    this.svc.create(order).subscribe(() => {
+      this.orderForm.reset();
+    }, console.error);
   }
 
 }

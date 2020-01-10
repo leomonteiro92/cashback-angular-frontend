@@ -1,1 +1,57 @@
-<p>create-order works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12 col-md-10 text-center">
+      <form
+        id="orderForm"
+        novalidate
+        [formGroup]="orderForm"
+        (ngSubmit)="submitOrder()"
+      >
+        <div class="card no-border mx-auto">
+          <div class="card-header">Cadastrar Nova Compra</div>
+          <div class="card-body">
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="code"
+                name="code"
+                placeholder="Código da compra"
+                formControlName="code"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                id="amount"
+                name="amount"
+                placeholder="Valor da compra"
+                formControlName="amount"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                type="date"
+                class="form-control"
+                id="orderDate"
+                name="orderDate"
+                placeholder="Data da compra"
+                formControlName="orderDate"
+                required
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-large">
+              Enviar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
