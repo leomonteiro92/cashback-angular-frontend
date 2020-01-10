@@ -1,5 +1,5 @@
 import { environment as env } from '../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -21,9 +21,12 @@ export class OrderService {
     return this.http.get(URL);
   }
 
-  public list() {
+  public list(options?: any) {
     const URL = `${env.API_HOSTNAME}/orders`;
-    return this.http.get(URL);
+    const params = new HttpParams({
+      fromObject: options
+    });
+    return this.http.get(URL, { params });
   }
 
   public remove(id: number) {

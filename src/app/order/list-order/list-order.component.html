@@ -1,1 +1,47 @@
-<p>list-order works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-lg-12">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Código</th>
+            <th>Valor</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Cashback %</th>
+            <th>Cashback R$</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let order of orders; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ order.code }}</td>
+            <td>{{ order.amount | currency: "BRL" }}</td>
+            <td>{{ order.orderDate | date: "dd/MM/yy" }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.cashbackPercentage }} %</td>
+            <td>{{ order.cashbackValue | currency: "BRL" }}</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="d-flex justify-content-between p-2">
+        <ngb-pagination
+          [collectionSize]="totalOrders"
+          [(page)]="page"
+          [pageSize]="pageSize"
+        ></ngb-pagination>
+        <select
+          class="custom-select"
+          style="width: auto"
+          [(ngModel)]="pageSize"
+        >
+          <option [ngValue]="8">8 items per page</option>
+          <option [ngValue]="16">16 items per page</option>
+          <option [ngValue]="32">32 items per page</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</div>

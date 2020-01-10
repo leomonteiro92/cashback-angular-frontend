@@ -9,6 +9,7 @@ import { OrderService } from './order.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from '../auth/access-token.interceptor';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [CreateOrderComponent, ListOrderComponent, UpdateOrderComponent],
@@ -24,6 +25,7 @@ import { TokenInterceptor } from '../auth/access-token.interceptor';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbPaginationModule,
     OrderRoutingModule
   ]
 })
