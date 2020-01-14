@@ -1,4 +1,6 @@
-# CashbackUi
+[![Coverage Status](https://coveralls.io/repos/leomonteiro92/cashback-angular-frontend/badge.svg?branch=master)](https://coveralls.io/r/leomonteiro92/cashback-angular-frontend?branch=master)
+
+# CashbackAngularFrontend
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.22.
 

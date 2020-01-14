@@ -8,9 +8,10 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display copyright', async () => {
     page.navigateTo();
-    expect(page.getTitleText()).toEqual('cashback-ui app is running!');
+    const text = await page.getTitleText();
+    expect(/leomonteiro92/gi.test(text)).toBeTruthy();
   });
 
   afterEach(async () => {
