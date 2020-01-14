@@ -9,17 +9,17 @@ import {
     HttpSentEvent,
     HttpUserEvent
 } from '@angular/common/http';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
 export class TokenInterceptor implements HttpInterceptor {
-    constructor(private oauth: OAuthService) { }
+    constructor(private auth: AuthService) { }
 
     addAccessToken(request: HttpRequest<any>) {
-        const accessToken = this.oauth.getAccessToken();
+        const accessToken = this.auth.getAccessToken();
         console.log('Intercepted!');
         console.log(accessToken);
         if (!accessToken) return request;

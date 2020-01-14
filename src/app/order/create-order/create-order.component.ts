@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Order } from '../order.model';
 import { OrderService } from '../order.service';
 import { Router } from '@angular/router';
 
@@ -27,7 +28,7 @@ export class CreateOrderComponent implements OnInit {
   }
 
   submitOrder() {
-    const order = this.orderForm.value;
+    const order: Order = this.orderForm.value;
     const parseOrderDate = new Date();
     parseOrderDate.setFullYear(this.orderForm.value.orderDate.year);
     parseOrderDate.setMonth(this.orderForm.value.orderDate.month);

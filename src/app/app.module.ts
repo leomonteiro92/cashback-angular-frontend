@@ -1,21 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { OAuthModule } from 'angular-oauth2-oidc';
-import { AuthGuard } from './auth/auth.guard';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { TokenInterceptor } from './auth/access-token.interceptor';
+import { AuthGuard, AuthService, TokenInterceptor } from './auth';
+import { HeaderComponent, FooterComponent, LoaderComponent, LoaderInterceptor } from './components';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +22,12 @@ import { TokenInterceptor } from './auth/access-token.interceptor';
     OAuthModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [AuthGuard, TokenInterceptor],
+  providers: [
+    AuthService,
+    AuthGuard,
+    LoaderInterceptor,
+    TokenInterceptor
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

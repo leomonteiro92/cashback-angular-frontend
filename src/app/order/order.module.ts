@@ -12,6 +12,7 @@ import { TokenInterceptor } from '../auth/access-token.interceptor';
 import { NgbPaginationModule, NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxCurrencyModule } from 'ngx-currency';
 import { StatusPipe } from './status.pipe';
+import { LoaderInterceptor } from '../components';
 
 @NgModule({
   declarations: [CreateOrderComponent, ListOrderComponent, UpdateOrderComponent, StatusPipe],
@@ -19,6 +20,10 @@ import { StatusPipe } from './status.pipe';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
+      multi: true
+    }, {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoaderInterceptor,
       multi: true
     },
     OrderService],

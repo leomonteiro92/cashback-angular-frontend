@@ -4,16 +4,17 @@ import { Router, RouterModule } from '@angular/router';
 import { OAuthService, OAuthModule } from 'angular-oauth2-oidc';
 import { HttpClientModule } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
+import { AuthService } from 'src/app/auth/auth.service';
 
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
-  let oauth: OAuthService;
-  let router: Router;
+  let auth: AuthService;
   let spy: any;
   let fixture: ComponentFixture<HeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [AuthService],
       imports: [
         RouterModule.forRoot([]),
         HttpClientModule,
@@ -25,7 +26,7 @@ describe('HeaderComponent', () => {
   }));
 
   beforeEach(() => {
-    oauth = TestBed.get(OAuthService);
+    auth = TestBed.get(OAuthService);
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -36,9 +37,9 @@ describe('HeaderComponent', () => {
   });
 
   it('should render the menu when when user is authenticated', () => {
-    spy = spyOn(oauth, 'hasValidAccessToken').and.returnValue(true);
+    spy = spyOn(auth, 'hasValidAccessToken').and.returnValue(true);
     component.ngOnInit();
-    expect(oauth.hasValidAccessToken).toHaveBeenCalled();
+    expect(auth.hasValidAccessToken).toHaveBeenCalled();
     fixture.detectChanges();
     const homeMenu = fixture.debugElement.query(By.css('#home'));
     const createOrderMenu = fixture.debugElement.query(By.css('#create-order'));
@@ -53,9 +54,9 @@ describe('HeaderComponent', () => {
   });
 
   it('should render the menu when user is not authenticated', () => {
-    spy = spyOn(oauth, 'hasValidAccessToken').and.returnValue(false);
+    spy = spyOn(auth, 'hasValidAccessToken').and.returnValue(false);
     component.ngOnInit();
-    expect(oauth.hasValidAccessToken).toHaveBeenCalled();
+    expect(auth.hasValidAccessToken).toHaveBeenCalled();
     fixture.detectChanges();
     const homeMenu = fixture.debugElement.query(By.css('#home'));
     const createOrderMenu = fixture.debugElement.query(By.css('#create-order'));

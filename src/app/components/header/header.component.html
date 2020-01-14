@@ -14,19 +14,32 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li id="home" class="nav-item">
-        <a class="nav-link" routerLink="/orders">Início</a>
+        <a class="nav-link" routerLink="/orders" routerLinkActive="active"
+          >Início</a
+        >
       </li>
       <li id="create-order" class="nav-item" *ngIf="isAuthenticated">
-        <a class="nav-link" routerLink="/orders/create">Nova Compra</a>
+        <a
+          class="nav-link"
+          routerLink="/orders/create"
+          routerLinkActive="active"
+          >Nova Compra</a
+        >
       </li>
       <li id="signup" class="nav-item" *ngIf="!isAuthenticated">
-        <a class="nav-link" routerLink="/users/signup">Cadastre-se</a>
+        <a class="nav-link" routerLink="/users/signup" routerLinkActive="active"
+          >Cadastre-se</a
+        >
       </li>
       <li id="signin" class="nav-item" *ngIf="!isAuthenticated">
-        <a class="nav-link" routerLink="/users/signin">Entrar</a>
+        <a class="nav-link" routerLink="/users/signin" routerLinkActive="active"
+          >Entrar</a
+        >
       </li>
       <li id="signout" class="nav-item" *ngIf="isAuthenticated">
-        <a class="nav-link" (click)="signOut()">Sair</a>
+        <a class="nav-link" (click)="signOut()" routerLinkActive="active"
+          >Sair</a
+        >
       </li>
     </ul>
   </div>

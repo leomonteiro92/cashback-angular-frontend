@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UpdateOrderComponent } from './update-order.component';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { OrderService } from '../order.service';
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('UpdateOrderComponent', () => {
   let component: UpdateOrderComponent;
@@ -8,9 +13,17 @@ describe('UpdateOrderComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UpdateOrderComponent ]
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        NgbDatepickerModule,
+        RouterModule.forRoot([])
+      ],
+      providers: [OrderService],
+      declarations: [UpdateOrderComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

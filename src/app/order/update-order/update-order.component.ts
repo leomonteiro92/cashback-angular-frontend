@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { OrderService } from '../order.service';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Order } from '../order.model';
+import { OrderService } from '../order.service';
 
 @Component({
   selector: 'app-update-order',
@@ -10,7 +11,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class UpdateOrderComponent implements OnInit {
 
-  order: any;
+  order: Order;
   orderForm: FormGroup;
 
   constructor(
@@ -22,23 +23,27 @@ export class UpdateOrderComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.svc.fetch(id).subscribe(data => {
+    this.svc.fetch(id).subscribe((data: Order) => {
       this.order = data;
       this.orderForm = this.prepareForm(this.order);
     }, console.error);
   }
 
-  prepareForm(order: any): FormGroup {
+  prepareForm(order: Partial<Order>): FormGroup {
     const rawOrderDate = new Date(order.orderDate);
-    order.orderDate = {
+    const strOrderDate = {
       year: rawOrderDate.getFullYear(),
       month: rawOrderDate.getMonth() + 1,
       day: rawOrderDate.getDate()
     };
     return this.fb.group({
-      code: [order.code, [Validators.required, Validators.maxLength(10), Validators.pattern(/^-?(0|[1-9]\d*)?$/)]],
+      code: [order.code, [
+        Validators.required,
+        Validators.maxLength(10),
+        Validators.pattern(/^-?(0|[1-9]\d*)?$/)]
+      ],
       amount: [order.amount, Validators.required],
-      orderDate: [order.orderDate, Validators.required]
+      orderDate: [strOrderDate, Validators.required]
     });
   }
 

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../user.service';
 import { CustomCPFValidator } from './helpers/cpf.validator';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-signup',
@@ -28,7 +29,7 @@ export class SignupComponent implements OnInit {
   }
 
   signUp() {
-    const user = this.signUpForm.value;
+    const user: User = this.signUpForm.value;
     user.confirmPassword = undefined;
     this.svc.create(user).subscribe(() => {
       this.signUpForm.reset();

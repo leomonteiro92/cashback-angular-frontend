@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '../order.model';
 import { OrderService } from '../order.service';
+import { Router } from '@angular/router';
 
 import { registerLocaleData } from '@angular/common';
 import localePtBr from '@angular/common/locales/br';
-import { Router } from '@angular/router';
 registerLocaleData(localePtBr, 'br');
 
 @Component({
@@ -13,7 +14,7 @@ registerLocaleData(localePtBr, 'br');
 })
 export class ListOrderComponent implements OnInit {
 
-  orders: any[] = [];
+  orders: Order[] = [];
   balance: number;
 
   totalOrders: number;
@@ -38,11 +39,11 @@ export class ListOrderComponent implements OnInit {
     }, console.error);
   }
 
-  prepareUpdate(row: any) {
+  prepareUpdate(row: Order) {
     this.router.navigate([`orders/update/${row._id}`]);
   }
 
-  removeOrder(index: number, row: any) {
+  removeOrder(index: number, row: Order) {
     console.log(index);
     this.svc.remove(row._id).subscribe(() => {
       this.orders.splice(index, 1);

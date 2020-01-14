@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SigninComponent } from './signin.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { OAuthModule } from 'angular-oauth2-oidc';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from 'src/app/auth/auth.service';
 
 describe('SigninComponent', () => {
   let component: SigninComponent;
@@ -8,9 +13,17 @@ describe('SigninComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SigninComponent ]
+      providers: [AuthService],
+      imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule.forRoot([]),
+        OAuthModule.forRoot()
+      ],
+      declarations: [SigninComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -15,12 +16,12 @@ export class SigninComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private oauth: OAuthService) {
+    private auth: AuthService) {
   }
 
   ngOnInit() {
     this.signInForm = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
@@ -28,8 +29,8 @@ export class SigninComponent implements OnInit {
   async signIn() {
     const { email: username, password } = this.signInForm.value;
     try {
-      await this.oauth.fetchTokenUsingPasswordFlow(username, password);
-      this.router.navigate(['orders'])
+      await this.auth.login(username, password);
+      this.router.navigate(['orders']);
     } catch (err) {
       alert(`Erro ao autenticar ${err.message}`);
     }

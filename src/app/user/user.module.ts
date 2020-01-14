@@ -6,12 +6,18 @@ import { UserRoutingModule } from './user-routing.module';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserService } from './user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxMaskModule } from 'ngx-mask';
+import { LoaderInterceptor } from '../components';
 
 @NgModule({
   declarations: [SigninComponent, SignupComponent],
-  providers: [UserService],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: LoaderInterceptor,
+    multi: true
+  },
+    UserService],
   imports: [
     CommonModule,
     FormsModule,
