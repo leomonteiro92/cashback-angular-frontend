@@ -7,10 +7,15 @@ import { AppComponent } from './app.component';
 
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { AuthGuard } from './auth/auth.guard';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { TokenInterceptor } from './auth/access-token.interceptor';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +23,7 @@ import { AuthGuard } from './auth/auth.guard';
     OAuthModule.forRoot(),
     AppRoutingModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, TokenInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

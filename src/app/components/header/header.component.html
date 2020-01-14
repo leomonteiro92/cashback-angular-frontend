@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+  <a class="navbar-brand" href="#">Consultant Cashback Management</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarCollapse"
+    aria-controls="navbarCollapse"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav mr-auto">
+      <li id="home" class="nav-item">
+        <a class="nav-link" routerLink="/orders">Início</a>
+      </li>
+      <li id="create-order" class="nav-item" *ngIf="isAuthenticated">
+        <a class="nav-link" routerLink="/orders/create">Nova Compra</a>
+      </li>
+      <li id="signup" class="nav-item" *ngIf="!isAuthenticated">
+        <a class="nav-link" routerLink="/users/signup">Cadastre-se</a>
+      </li>
+      <li id="signin" class="nav-item" *ngIf="!isAuthenticated">
+        <a class="nav-link" routerLink="/users/signin">Entrar</a>
+      </li>
+      <li id="signout" class="nav-item" *ngIf="isAuthenticated">
+        <a class="nav-link" (click)="signOut()">Sair</a>
+      </li>
+    </ul>
+  </div>
+</nav>

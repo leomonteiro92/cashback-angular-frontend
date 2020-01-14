@@ -39,4 +39,9 @@ export class OrderService {
     return this.http.put(URL, inputOrder);
   }
 
+  public balance() {
+    const URL = `${env.API_HOSTNAME}/balance`;
+    return this.http.get(URL);
+  }
+
 }

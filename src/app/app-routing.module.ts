@@ -12,7 +12,8 @@ const routes: Routes = [{
   loadChildren: () => import('./order/order.module').then(m => m.OrderModule)
 }, {
   path: '',
-  component: AppComponent
+  pathMatch: 'full',
+  redirectTo: 'orders'
 }, {
   path: '**',
   component: AppComponent

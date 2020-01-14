@@ -5,13 +5,13 @@ import { ListOrderComponent } from './list-order/list-order.component';
 import { UpdateOrderComponent } from './update-order/update-order.component';
 
 const routes: Routes = [{
+  path: '',
+  component: ListOrderComponent
+}, {
   path: 'create',
   component: CreateOrderComponent
 }, {
-  path: 'list',
-  component: ListOrderComponent
-}, {
-  path: 'update',
+  path: 'update/:id',
   component: UpdateOrderComponent
 }];
 

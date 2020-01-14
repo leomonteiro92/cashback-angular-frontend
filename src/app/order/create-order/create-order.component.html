@@ -17,9 +17,26 @@
                 id="code"
                 name="code"
                 placeholder="Código da compra"
+                maxlength="10"
                 formControlName="code"
                 required
               />
+
+              <div
+                class="text-danger"
+                *ngIf="
+                  orderForm.controls.code.invalid &&
+                  (orderForm.controls.code.dirty ||
+                    orderForm.controls.code.touched)
+                "
+              >
+                <span *ngIf="orderForm.controls.code.errors.required"
+                  >Código é obrigatório</span
+                >
+                <span *ngIf="orderForm.controls.code.errors.pattern"
+                  >Código só pode conter números</span
+                >
+              </div>
             </div>
 
             <div class="form-group">
@@ -31,22 +48,62 @@
                 placeholder="Valor da compra"
                 formControlName="amount"
                 required
+                currencyMask
               />
+
+              <div
+                class="text-danger"
+                *ngIf="
+                  orderForm.controls.amount.invalid &&
+                  (orderForm.controls.amount.dirty ||
+                    orderForm.controls.amount.touched)
+                "
+              >
+                <span *ngIf="orderForm.controls.amount.errors.required"
+                  >Valor da compra é obrigatório</span
+                >
+              </div>
             </div>
 
             <div class="form-group">
-              <input
-                type="date"
-                class="form-control"
-                id="orderDate"
-                name="orderDate"
-                placeholder="Data da compra"
-                formControlName="orderDate"
-                required
-              />
+              <div class="input-group">
+                <input
+                  class="form-control"
+                  placeholder="Data da compra"
+                  name="orderDate"
+                  formControlName="orderDate"
+                  ngbDatepicker
+                  #d2="ngbDatepicker"
+                />
+                <div class="input-group-append">
+                  <button
+                    class="btn btn-outline-secondary"
+                    (click)="d2.toggle()"
+                    type="button"
+                  >
+                    <i class="fa fa-calendar"></i>
+                  </button>
+                </div>
+              </div>
+              <div
+                class="text-danger"
+                *ngIf="
+                  orderForm.controls.orderDate.invalid &&
+                  (orderForm.controls.orderDate.dirty ||
+                    orderForm.controls.orderDate.touched)
+                "
+              >
+                <span *ngIf="orderForm.controls.orderDate.errors.required"
+                  >Data da compra é obrigatório</span
+                >
+              </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-large">
+            <button
+              type="submit"
+              [disabled]="orderForm.invalid"
+              class="btn btn-primary btn-large"
+            >
               Enviar
             </button>
           </div>

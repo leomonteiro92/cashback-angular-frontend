@@ -20,6 +20,18 @@
                 formControlName="name"
                 required
               />
+              <div
+                class="text-danger"
+                *ngIf="
+                  signUpForm.controls.name.invalid &&
+                  (signUpForm.controls.name.dirty ||
+                    signUpForm.controls.name.touched)
+                "
+              >
+                <span *ngIf="signUpForm.controls.name.errors.required"
+                  >Nome é obrigatório</span
+                >
+              </div>
             </div>
 
             <div class="form-group">
@@ -31,7 +43,23 @@
                 placeholder="CPF"
                 formControlName="cpf"
                 required
+                mask="000.000.000-99"
               />
+              <div
+                class="text-danger"
+                *ngIf="
+                  signUpForm.controls.cpf.invalid &&
+                  (signUpForm.controls.cpf.dirty ||
+                    signUpForm.controls.cpf.touched)
+                "
+              >
+                <span *ngIf="signUpForm.controls.cpf.errors.required"
+                  >CPF é obrigatório</span
+                >
+                <span *ngIf="signUpForm.controls.cpf.errors.cpf"
+                  >CPF inválido</span
+                >
+              </div>
             </div>
 
             <div class="form-group">
@@ -44,6 +72,18 @@
                 formControlName="email"
                 required
               />
+              <div
+                class="text-danger"
+                *ngIf="
+                  signUpForm.controls.email.invalid &&
+                  (signUpForm.controls.email.dirty ||
+                    signUpForm.controls.email.touched)
+                "
+              >
+                <span *ngIf="signUpForm.controls.email.errors.required"
+                  >E-mail é obrigatório</span
+                >
+              </div>
             </div>
 
             <div class="form-group">
@@ -56,6 +96,18 @@
                 formControlName="password"
                 required
               />
+              <div
+                class="text-danger"
+                *ngIf="
+                  signUpForm.controls.password.invalid &&
+                  (signUpForm.controls.password.dirty ||
+                    signUpForm.controls.password.touched)
+                "
+              >
+                <span *ngIf="signUpForm.controls.password.errors.required"
+                  >Senha é obrigatória</span
+                >
+              </div>
             </div>
 
             <div class="form-group">
@@ -68,9 +120,26 @@
                 formControlName="confirmPassword"
                 required
               />
+              <div
+                class="text-danger"
+                *ngIf="
+                  signUpForm.controls.confirmPassword.invalid &&
+                  (signUpForm.controls.confirmPassword.dirty ||
+                    signUpForm.controls.confirmPassword.touched)
+                "
+              >
+                <span
+                  *ngIf="signUpForm.controls.confirmPassword.errors.required"
+                  >Confirmação de senha é obrigatória</span
+                >
+              </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-large">
+            <button
+              type="submit"
+              [disabled]="signUpForm.invalid"
+              class="btn btn-primary btn-large"
+            >
               Cadastrar
             </button>
           </div>

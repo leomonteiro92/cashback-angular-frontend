@@ -7,6 +7,7 @@ import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserService } from './user.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [SigninComponent, SignupComponent],
@@ -16,7 +17,12 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    UserRoutingModule
+    UserRoutingModule,
+    NgxMaskModule.forRoot()
+  ],
+  exports: [
+    SigninComponent,
+    SignupComponent
   ]
 })
 export class UserModule { }

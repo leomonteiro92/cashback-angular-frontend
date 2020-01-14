@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { UserService } from '../user.service';
+import { CustomCPFValidator } from './helpers/cpf.validator';
 
 @Component({
   selector: 'app-signup',
@@ -19,7 +20,7 @@ export class SignupComponent implements OnInit {
   ngOnInit() {
     this.signUpForm = this.fb.group({
       name: ['', Validators.required],
-      cpf: ['', Validators.required],
+      cpf: ['', [Validators.required, CustomCPFValidator]],
       email: ['', Validators.required],
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required]
