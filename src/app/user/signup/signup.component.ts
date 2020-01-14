@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomCPFValidator } from './helpers/cpf.validator';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -15,7 +16,9 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private svc: UserService) {
+    private svc: UserService,
+    private router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -33,6 +36,7 @@ export class SignupComponent implements OnInit {
     user.confirmPassword = undefined;
     this.svc.create(user).subscribe(() => {
       this.signUpForm.reset();
+      this.router.navigate(['users/signin']);
     }, console.error);
   }
 
