@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cashback-ui": {
+    "cashback-angular-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/cashback-ui",
+            "outputPath": "dist/cashback-angular-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -66,18 +66,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cashback-ui:build"
+            "browserTarget": "cashback-angular-frontend:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cashback-ui:build:production"
+              "browserTarget": "cashback-angular-frontend:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cashback-ui:build"
+            "browserTarget": "cashback-angular-frontend:build"
           }
         },
         "test": {
@@ -107,16 +107,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "cashback-ui:serve"
+            "devServerTarget": "cashback-angular-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "cashback-ui:serve:production"
+              "devServerTarget": "cashback-angular-frontend:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "cashback-ui"
+  "defaultProject": "cashback-angular-frontend"
 }
