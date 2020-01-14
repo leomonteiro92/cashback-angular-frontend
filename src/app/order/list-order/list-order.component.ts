@@ -44,7 +44,6 @@ export class ListOrderComponent implements OnInit {
   }
 
   removeOrder(index: number, row: Order) {
-    console.log(index);
     this.svc.remove(row._id).subscribe(() => {
       this.orders.splice(index, 1);
     }, console.error);

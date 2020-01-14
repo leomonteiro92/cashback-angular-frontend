@@ -42,7 +42,7 @@
             <div class="col">
               <p>
                 <button
-                  class="btn btn-primary"
+                  class="btn btn-primary edit-order"
                   [disabled]="order.status !== 'under_review'"
                   (click)="prepareUpdate(order)"
                 >
@@ -51,7 +51,7 @@
               </p>
               <p>
                 <button
-                  class="btn btn-danger"
+                  class="btn btn-danger remove-order"
                   [disabled]="order.status !== 'under_review'"
                   (click)="removeOrder(i, order)"
                 >
